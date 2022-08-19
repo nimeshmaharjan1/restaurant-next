@@ -4,17 +4,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 
-const Product = () => {
-  const [product, setProduct] = useState(undefined);
+const Product = ({ pizza }) => {
   const [size, setSize] = useState(0);
-  const pizza = {
-    id: 1,
-    img: "/img/pizza.png",
-    name: "CAMPAGNOLA",
-    price: [19.9, 23.9, 27.9],
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis arcu purus, rhoncus fringilla vestibulum vel, dignissim vel ante. Nulla facilisi. Nullam a urna sit amet tellus pellentesque egestas in in ante.",
-  };
-
+  console.log({ pizza });
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -90,3 +82,11 @@ const Product = () => {
 };
 
 export default Product;
+export const getServerSideProps = async ({ params }) => {
+  const response = await axios.get(
+    `http://localhost:3000/api/products/${params.id}`
+  );
+  return {
+    props: { pizza: response.data },
+  };
+};
