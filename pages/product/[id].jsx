@@ -1,8 +1,11 @@
 import styles from "../../styles/Product.module.css";
 import Image from "next/image";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Product = () => {
+  const [product, setProduct] = useState(undefined);
   const [size, setSize] = useState(0);
   const pizza = {
     id: 1,
@@ -78,8 +81,8 @@ const Product = () => {
           </div>
         </div>
         <div className={styles.add}>
-            <input type="number" defaultValue={1} className={styles.quantity}/>
-            <button className={styles.button}>Add to Cart</button>
+          <input type="number" defaultValue={1} className={styles.quantity} />
+          <button className={styles.button}>Add to Cart</button>
         </div>
       </div>
     </div>
