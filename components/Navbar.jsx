@@ -1,36 +1,97 @@
-import Image from "next/image";
-import styles from "../styles/Navbar.module.css";
-
+import { Col, Divider, Drawer, Layout, Menu, Row, Typography } from "antd";
+import React, { useState } from "react";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import Link from "next/link";
+const { Title } = Typography;
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className={styles.container}>
-      <div className={styles.item}>
-        <div className={styles.callButton}>
-          <Image src="/img/telephone.png" alt="" width="32" height="32" />
-        </div>
-        <div className={styles.texts}>
-          <div className={styles.text}>ORDER NOW!</div>
-          <div className={styles.text}>012 345 678</div>
-        </div>
-      </div>
-      <div className={styles.item}>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>Homepage</li>
-          <li className={styles.listItem}>Products</li>
-          <li className={styles.listItem}>Menu</li>
-          <Image src="/img/logo.png" alt="" width="160px" height="69px" />
-          <li className={styles.listItem}>Events</li>
-          <li className={styles.listItem}>Blog</li>
-          <li className={styles.listItem}>Contact</li>
-        </ul>
-      </div>
-      <div className={styles.item}>
-        <div className={styles.cart}>
-          <Image src="/img/cart.png" alt="" width="30px" height="30px" />
-          <div className={styles.counter}>2</div>
-        </div>
-      </div>
-    </div>
+    <>
+      <Row align="middle" style={{ paddingTop: "1rem" }}>
+        <Col xs={12} style={{ paddingLeft: "2rem" }}>
+          <Title level={2} style={{ fontFamily: "MonteCarlo" }}>
+            Restaurant
+          </Title>
+        </Col>
+        <Col xs={12}>
+          <Row align="middle" justify="end">
+            <Col xs={2}>
+              <MenuOutlined
+                onClick={() => setIsMenuOpen(true)}
+                style={{ fontSize: "2rem", color: "black", cursor: "pointer" }}
+              />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <Drawer
+        title={
+          <Title
+            level={2}
+            style={{
+              color: "#F2F4F3",
+              margin: "0",
+              fontFamily: "montecarlo",
+              fontWeight: "400",
+            }}
+          >
+            Navigation
+          </Title>
+        }
+        placement="right"
+        closable={false}
+        onClose={() => setIsMenuOpen(false)}
+        visible={isMenuOpen}
+        drawerStyle={{
+          backgroundColor: "#49111C",
+          color: "#F2F4F3",
+          fontFamily: "MonteCarlo",
+        }}
+      >
+        <Link href="/product/123" passHref>
+          <Title
+            level={5}
+            style={{
+              fontFamily: "Montserrat",
+              fontWeight: "400",
+              cursor: "pointer",
+              color: "#F2F4F3",
+            }}
+          >
+            Order
+          </Title>
+        </Link>
+        <Divider></Divider>
+        <Link href="/product/123" passHref>
+          <Title
+            level={5}
+            style={{
+              fontFamily: "Montserrat",
+              fontWeight: "400",
+              cursor: "pointer",
+              color: "#F2F4F3",
+            }}
+          >
+            Menu
+          </Title>
+        </Link>
+        <Divider></Divider>
+        <Link href="/product/123" passHref>
+          <Title
+            level={5}
+            style={{
+              fontFamily: "Montserrat",
+              fontWeight: "400",
+              cursor: "pointer",
+              color: "#F2F4F3",
+            }}
+          >
+            About Us
+          </Title>
+        </Link>
+        <Divider></Divider>
+      </Drawer>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
-module.exports = {
+const withLess = require("next-with-less");
+module.exports = withLess({
   reactStrictMode: true,
   webp: {
     preset: "default",
@@ -10,6 +11,8 @@ module.exports = {
       "themoviedb.org",
       "64.media.tumblr.com",
       "www.ezcater.com",
+      "thumbs.dreamstime.com",
+      "c.pxhere.com",
     ],
   },
-};
+});

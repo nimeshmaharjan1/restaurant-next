@@ -5,21 +5,31 @@ import connectMongo from "../../../utils/database";
 
 export default async function handler(req, res) {
   await connectMongo();
-  const { method } = req;
+  const {
+    method,
+    query: { id },
+  } = req;
   switch (method) {
     case "GET":
       try {
-        const products = await ProductModel.find();
+        const product = await ProductModel.findById(id);
         return res.status(200).json({
           success: true,
-          products,
+          product,
         });
       } catch (error) {
         return res.status(500).json(error);
       }
-    case "POST":
+    case "PUT":
       try {
-        const product = await ProductModel.create(req.body);
+        const { image } = req.body;
+        const product = await ProductModel.findByIdAndUpdate(
+          id,
+          { image: image },
+          {
+            new: true,
+          }
+        );
         return res.status(201).json({
           message: "Product added successfully",
           success: true,
