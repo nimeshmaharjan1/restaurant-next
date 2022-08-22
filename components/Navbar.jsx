@@ -19,7 +19,9 @@ const Navbar = () => {
         <h3
           style={{ cursor: "pointer", fontSize: "1.5rem", fontWeight: "600" }}
         >
-          Restaurant
+          <Link href="/" passHref>
+            Restaurant
+          </Link>
         </h3>
       </div>
       <div className={styles.links}>

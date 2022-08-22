@@ -4,6 +4,11 @@ import Image from "next/image";
 import * as styles from "../styles/layout.module.less";
 import Navbar from "./Navbar";
 const { Content, Footer } = Layout;
+import {
+  InstagramOutlined,
+  FacebookOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
 const MainLayout = ({ children, home }) => {
   return (
     <>
@@ -16,7 +21,13 @@ const MainLayout = ({ children, home }) => {
           ></Image>
           <HomeNav />
           <div className={styles.bottomRight}>
-            <h1>Hello</h1>
+            <div
+              style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}
+            >
+              <InstagramOutlined style={{ fontSize: "2rem" }} />
+              <FacebookOutlined style={{ fontSize: "2rem" }} />
+              <TwitterOutlined style={{ fontSize: "2rem" }} />
+            </div>
           </div>
         </div>
       ) : (

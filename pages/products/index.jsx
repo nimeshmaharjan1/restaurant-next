@@ -10,7 +10,7 @@ const Products = ({ products }) => {
   return (
     <MainLayout>
       <h3 className="page-title">Products</h3>
-      <Row gutter={[24, 24]}>
+      <Row gutter={[24, 24]} className="mb-2">
         {products &&
           products.map((product) => (
             <Link href={`/products/${product._id}`} passHref key={product._id}>

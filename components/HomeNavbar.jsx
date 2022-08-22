@@ -29,7 +29,6 @@ const Navbar = () => {
           <Title
             level={2}
             style={{
-              color: "#F2F4F3",
               margin: "0",
               fontFamily: "montecarlo",
               fontWeight: "400",
@@ -43,8 +42,7 @@ const Navbar = () => {
         onClose={() => setIsMenuOpen(false)}
         visible={isMenuOpen}
         drawerStyle={{
-          backgroundColor: "#A9927D",
-          color: "#F2F4F3",
+          backgroundColor: "#e7e9eb",
           fontFamily: "MonteCarlo",
         }}
       >
@@ -55,10 +53,9 @@ const Navbar = () => {
               fontFamily: "Montserrat",
               fontWeight: "400",
               cursor: "pointer",
-              color: "#F2F4F3",
             }}
           >
-            Order
+            Products
           </Title>
         </Link>
         <Divider></Divider>
@@ -69,7 +66,6 @@ const Navbar = () => {
               fontFamily: "Montserrat",
               fontWeight: "400",
               cursor: "pointer",
-              color: "#F2F4F3",
             }}
           >
             Menu
@@ -83,7 +79,6 @@ const Navbar = () => {
               fontFamily: "Montserrat",
               fontWeight: "400",
               cursor: "pointer",
-              color: "#F2F4F3",
             }}
           >
             About Us
