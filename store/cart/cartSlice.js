@@ -24,7 +24,12 @@ const cartSlice = createSlice({
       }
     },
     resetCart: (state) => {
-      state = initialState;
+      state.cartItems = [];
+      state.quantity = 0;
+      state.total = 0;
+      localStorage.removeItem("cartItems");
+      localStorage.removeItem("cartQuantity");
+      localStorage.removeItem("cartTotal");
     },
   },
 });

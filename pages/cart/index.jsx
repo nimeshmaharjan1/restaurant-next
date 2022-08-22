@@ -1,15 +1,42 @@
-import React, { useEffect } from "react";
-import { selectCartItems, selectCartTotal } from "../../store/cart/cartSlice";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import {
+  resetCart,
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
 import MainLayout from "../../components/Layout";
-import { Col, Row, Table, Card, Typography, Button } from "antd";
+import axios from "axios";
+import { useRouter } from "next/router";
+import {
+  Col,
+  Row,
+  Table,
+  Card,
+  Typography,
+  Button,
+  Modal,
+  Form,
+  Input,
+  message,
+} from "antd";
 import Image from "next/image";
 import Link from "next/link";
 const { Title } = Typography;
 const Cart = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [customer, setCustomer] = useState(undefined);
+  const [address, setAddress] = useState(undefined);
+  const [paymentMethod, setPaymentMethod] = useState(undefined);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
   const cartItems = useSelector(selectCartItems);
+  useEffect(() => {
+    console.log(customer);
+  }, [customer]);
   const total = useSelector(selectCartTotal);
-  console.log(cartItems);
   const columns = [
     {
       title: "Product",
@@ -40,6 +67,28 @@ const Cart = () => {
     },
   ];
 
+  const makeOrder = async () => {
+    const form = {
+      customer,
+      address,
+      phoneNumber,
+      email,
+      paymentMethod: 0,
+      total,
+    };
+    console.log({ form });
+    try {
+      axios.post("/api/orders", form).then(() => {
+        message.success("Order has been created successfully", 5);
+      });
+      dispatch(resetCart());
+      setIsModalVisible(false);
+      router.push("/products");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <MainLayout>
       <Row className="mt-2" style={{ marginBottom: "2rem" }} gutter={[24, 10]}>
@@ -63,12 +112,67 @@ const Cart = () => {
             <Title level={5}>Subtotal: ${total}</Title>
             <Title level={5}>Discount: $0</Title>
             <Title level={5}>Total: ${total}</Title>
-            <Button type="primary" block size="large">
+            <Button
+              type="primary"
+              block
+              size="large"
+              onClick={() => setIsModalVisible(true)}
+            >
               Cash On Delivery
             </Button>
           </Card>
         </Col>
       </Row>
+      <Modal
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        title="Delivery Details"
+        footer={null}
+        okText="Submit"
+        centered
+      >
+        <Form
+          labelCol={{ span: 7 }}
+          wrapperCol={{ span: 16 }}
+          onFinish={makeOrder}
+        >
+          <Form.Item
+            label="Full Name"
+            name="name"
+            rules={[{ required: true, message: "Please input your full name" }]}
+          >
+            <Input onChange={(e) => setCustomer(e.target.value)}></Input>
+          </Form.Item>
+          <Form.Item
+            label="Address"
+            name="address"
+            rules={[{ required: true, message: "Please input your address" }]}
+          >
+            <Input onChange={(e) => setAddress(e.target.value)}></Input>
+          </Form.Item>
+          <Form.Item
+            label="Phone Number"
+            name="phoneNumber"
+            rules={[
+              { required: true, message: "Please input your phone number." },
+            ]}
+          >
+            <Input onChange={(e) => setPhoneNumber(e.target.value)}></Input>
+          </Form.Item>
+          <Form.Item
+            label="E-mail"
+            name="email"
+            rules={[{ required: true, message: "Please input your email." }]}
+          >
+            <Input onChange={(e) => setEmail(e.target.value)}></Input>
+          </Form.Item>{" "}
+          <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </MainLayout>
   );
 };

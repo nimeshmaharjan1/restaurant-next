@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import MainLayout from "../../components/Layout";
-import { Row, Col, Typography, Button, Checkbox } from "antd";
+import { Row, Col, Typography, Button, Checkbox, Alert, message } from "antd";
 import * as styles from "../../styles/product.module.less";
 import {
   addToCart,
@@ -40,6 +40,7 @@ const Product = ({ product }) => {
       setExtras(extras.filter((extra) => extra._id !== option._id));
     }
   };
+  const [isAddToCartDisabled, setIsAddToCartDisabled] = useState(false);
   const handleAddToCart = () => {
     dispatch(
       addToCart({
@@ -50,6 +51,11 @@ const Product = ({ product }) => {
         price,
       })
     );
+    message.success("Product has been added to the cart.", 1);
+    setIsAddToCartDisabled(true);
+    setTimeout(() => {
+      setIsAddToCartDisabled(false);
+    }, 1500);
   };
   return (
     <MainLayout>
@@ -107,6 +113,7 @@ const Product = ({ product }) => {
               borderColor: "#019fb6",
             }}
             onClick={handleAddToCart}
+            disabled={isAddToCartDisabled}
           >
             Add To Cart
           </Button>

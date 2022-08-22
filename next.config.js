@@ -14,6 +14,7 @@ module.exports = withLess({
       "thumbs.dreamstime.com",
       "c.pxhere.com",
       "gw.alipayobjects.com",
+      "github.com",
     ],
   },
 });
