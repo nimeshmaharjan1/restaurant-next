@@ -48,7 +48,7 @@ const Navbar = () => {
           fontFamily: "MonteCarlo",
         }}
       >
-        <Link href="/product/123" passHref>
+        <Link href="/products" passHref>
           <Title
             level={5}
             style={{

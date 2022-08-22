@@ -53,3 +53,18 @@ body {
   opacity: 0.5;
   margin: 0;
 }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.cart-table .ant-pagination {
+  display: none;
+}
+.mt-2 {
+  margin-top: 1.5rem;
+}

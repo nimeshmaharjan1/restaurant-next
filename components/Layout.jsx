@@ -22,12 +22,14 @@ const MainLayout = ({ children, home }) => {
       ) : (
         <>
           <Navbar />
-          <Content style={{ minHeight: "100vh" }}>
-            <div className="container">{children}</div>
+          <Content>
+            <div className="container" style={{ minHeight: "100vh" }}>
+              {children}
+            </div>
           </Content>
         </>
       )}
-      <Footer style={{ textAlign: "center", marginTop: "2rem" }}>
+      <Footer style={{ textAlign: "center" }}>
         Restaurant ©2022 Powered By Nimesh Maharjan
       </Footer>
     </>
