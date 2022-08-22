@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 @import url(https://fonts.googleapis.com/css?family=MonteCarlo:regular);
+
+:root {
+  --bg: #5e503f;
+  --bg-variant: #a9927d;
+}
 html,
 body {
   height: 100%;
@@ -8,7 +13,8 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 .container {
-  width: 100%;
+  width: 100% !important;
+  padding: 0.5rem 4rem;
   display: inline-block;
   margin: 0 auto;
   transition: width 0.1s;
@@ -36,6 +42,14 @@ body {
 }
 @media (min-width: 1536px) {
   .container {
-    width: 1536px;
+    width: 1510px;
   }
+}
+
+.page-title {
+  font-size: 4rem;
+  margin-top: -1rem !important;
+  font-weight: bold;
+  opacity: 0.5;
+  margin: 0;
 }

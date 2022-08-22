@@ -13,6 +13,7 @@ module.exports = withLess({
       "www.ezcater.com",
       "thumbs.dreamstime.com",
       "c.pxhere.com",
+      "gw.alipayobjects.com",
     ],
   },
 });

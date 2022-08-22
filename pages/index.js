@@ -1,18 +1,16 @@
 import axios from "axios";
 import Head from "next/head";
-import MainLayout from "../components/Layout";
+import Layout from "../components/Layout";
 
 export default function Home({ pizzaList }) {
   return (
-    <MainLayout home>
+    <Layout home>
       <Head>
         <title>Pizza Restaurant</title>
         <meta name="description" content="Best pizza shop in town" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <PizzaList pizzaList={pizzaList} /> */}
-      <h1>Hello</h1>
-    </MainLayout>
+    </Layout>
   );
 }
 // export const getServerSideProps = async () => {

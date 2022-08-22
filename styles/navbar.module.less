@@ -1,0 +1,33 @@
+.nav {
+  padding: 1rem 2rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1,
+  h3 {
+    margin: 0;
+  }
+  .links {
+    display: flex;
+    gap: 2.5rem;
+    cursor: pointer;
+  }
+  h3 {
+    display: inline-block;
+    margin: 0;
+  }
+  h3:after {
+    display: block;
+    content: "";
+    border-bottom: solid 3px #019fb6;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+  }
+  h3:hover:after {
+    transform: scaleX(1);
+  }
+  .fromLeft:after {
+    transform-origin: 0% 50%;
+  }
+}
