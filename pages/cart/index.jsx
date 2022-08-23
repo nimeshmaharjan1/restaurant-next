@@ -90,9 +90,14 @@ const Cart = () => {
       total,
     };
     try {
-      axios.post("/api/orders", form).then(() => {
-        message.success("Order has been created successfully", 5);
-      });
+      axios
+        .post(
+          "https://6304962b27eb164c0303d4d1--tourmaline-paletas-896288.netlify.app/api/orders",
+          form
+        )
+        .then(() => {
+          message.success("Order has been created successfully", 5);
+        });
       dispatch(resetCart());
       setIsModalVisible(false);
       router.push("/products");

@@ -28,7 +28,9 @@ const Products = ({ products }) => {
 
 export default Products;
 export const getServerSideProps = async () => {
-  const response = await axios.get("http://localhost:3000/api/products");
+  const response = await axios.get(
+    "https://6304962b27eb164c0303d4d1--tourmaline-paletas-896288.netlify.app/api/products"
+  );
   return {
     props: { products: response.data.products },
   };

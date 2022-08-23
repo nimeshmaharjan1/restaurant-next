@@ -3,7 +3,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 const Loader = ({ loading }) => {
   return (
-    <div className={loading && "loader"}>
+    <div className={loading ? "loader" : undefined}>
       <PulseLoader
         ariaLabel="triangle-loading"
         loading={loading}
