@@ -11,6 +11,7 @@ import {
   selectCartQuantity,
 } from "../../store/cart/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
 const { Title } = Typography;
 const Product = ({ product }) => {
   const dispatch = useDispatch();
@@ -45,13 +46,13 @@ const Product = ({ product }) => {
     dispatch(
       addToCart({
         title: product.title,
-        id: product._id,
+        id: uuid(),
         image: product.image,
         extras,
         price,
       })
     );
-    message.success("Product has been added to the cart.", 1);
+    message.success("Product has been added to the cart.", 3);
     setIsAddToCartDisabled(true);
     setTimeout(() => {
       setIsAddToCartDisabled(false);
@@ -109,8 +110,6 @@ const Product = ({ product }) => {
             size="large"
             style={{
               marginTop: "1rem",
-              backgroundColor: "#019fb6",
-              borderColor: "#019fb6",
             }}
             onClick={handleAddToCart}
             disabled={isAddToCartDisabled}

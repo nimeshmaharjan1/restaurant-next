@@ -2,7 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import Layout from "../components/Layout";
 
-export default function Home({ pizzaList }) {
+export default function Home() {
   return (
     <Layout home>
       <Head>

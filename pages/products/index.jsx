@@ -4,6 +4,8 @@ import { Typography, Row, Col } from "antd";
 import ProductCard from "../../components/ProductCard";
 import axios from "axios";
 import Link from "next/link";
+import Loader from "../../components/Loader";
+
 const Products = ({ products }) => {
   console.log(products);
   const { Title } = Typography;

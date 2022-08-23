@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  removeItem,
   resetCart,
   selectCartItems,
   selectCartTotal,
@@ -22,6 +23,7 @@ import {
 } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { DeleteOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 const Cart = () => {
   const dispatch = useDispatch();
@@ -33,9 +35,6 @@ const Cart = () => {
   const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [email, setEmail] = useState(undefined);
   const cartItems = useSelector(selectCartItems);
-  useEffect(() => {
-    console.log(customer);
-  }, [customer]);
   const total = useSelector(selectCartTotal);
   const columns = [
     {
@@ -43,9 +42,7 @@ const Cart = () => {
       dataIndex: "image",
       key: "product",
       render: (image) => (
-        <div style={{ textAlign: "center" }}>
-          <Image height={150} width={200} src={image} alt="product" />
-        </div>
+        <Image height={150} width={200} src={image} alt="product" />
       ),
     },
     {
@@ -65,6 +62,22 @@ const Cart = () => {
       key: "Price",
       render: (price) => <p style={{ margin: 0 }}>${price}</p>,
     },
+    {
+      title: "Actions",
+      dataIndex: "id",
+      key: "remove",
+      render: (id) => (
+        <div style={{ textAlign: "center" }}>
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => dispatch(removeItem(id))}
+          >
+            Remove
+          </Button>
+        </div>
+      ),
+    },
   ];
 
   const makeOrder = async () => {
@@ -76,7 +89,6 @@ const Cart = () => {
       paymentMethod: 0,
       total,
     };
-    console.log({ form });
     try {
       axios.post("/api/orders", form).then(() => {
         message.success("Order has been created successfully", 5);
@@ -105,7 +117,7 @@ const Cart = () => {
             title={<Title level={4}>Cart Total</Title>}
             extra={
               <Link href="/products" passHref>
-                Add more
+                {cartItems.length < 1 ? "Add Items" : "Add More"}
               </Link>
             }
           >
@@ -117,6 +129,7 @@ const Cart = () => {
               block
               size="large"
               onClick={() => setIsModalVisible(true)}
+              disabled={cartItems.length < 1}
             >
               Cash On Delivery
             </Button>
