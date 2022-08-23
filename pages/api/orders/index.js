@@ -4,7 +4,6 @@ import connectMongo from "../../../utils/database";
 export default async function handler(req, res) {
   const { method } = req;
   await connectMongo();
-  console.log({ method });
   switch (method) {
     case "GET":
       try {
@@ -14,7 +13,6 @@ export default async function handler(req, res) {
         res.status(500).json(error);
       }
     case "POST":
-      console.log(req.body);
       try {
         const order = await OrderModel.create(req.body);
         res.status(201).json(order);

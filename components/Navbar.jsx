@@ -11,7 +11,6 @@ const Navbar = () => {
   const cartQuantity = useSelector(selectCartQuantity);
   useEffect(() => {
     dispatch(fetchCartItems());
-    console.log(JSON.parse(localStorage.getItem("cartItems")));
   }, []);
   return (
     <nav className={styles.nav}>

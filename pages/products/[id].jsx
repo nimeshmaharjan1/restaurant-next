@@ -30,7 +30,6 @@ const Product = ({ product }) => {
   };
 
   const handleChange = (e, option) => {
-    console.log({ option });
     const checked = e.target.checked;
 
     if (checked) {

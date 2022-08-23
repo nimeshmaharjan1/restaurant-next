@@ -7,7 +7,6 @@ import Link from "next/link";
 import Loader from "../../components/Loader";
 
 const Products = ({ products }) => {
-  console.log(products);
   const { Title } = Typography;
   return (
     <MainLayout>

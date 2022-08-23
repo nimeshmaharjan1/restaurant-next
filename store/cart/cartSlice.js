@@ -15,7 +15,6 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       localStorage.setItem("cartQuantity", JSON.stringify(state.quantity));
       localStorage.setItem("cartTotal", JSON.stringify(state.total));
-      console.log(state.cartItems);
     },
     fetchCartItems: (state, action) => {
       if (localStorage.getItem("cartItems")) {
@@ -45,7 +44,6 @@ const cartSlice = createSlice({
           })
           .map((item) => {
             state.quantity -= 1;
-            console.log(item);
             state.total = 0;
             state.total += Number(item.price);
             return item;

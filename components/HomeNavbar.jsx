@@ -59,7 +59,7 @@ const Navbar = () => {
           </Title>
         </Link>
         <Divider></Divider>
-        <Link href="/product/123" passHref>
+        {/* <Link href="/product/123" passHref>
           <Title
             level={5}
             style={{
@@ -84,7 +84,7 @@ const Navbar = () => {
             About Us
           </Title>
         </Link>
-        <Divider></Divider>
+        <Divider></Divider> */}
       </Drawer>
     </>
   );
