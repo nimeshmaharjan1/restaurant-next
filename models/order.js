@@ -22,10 +22,17 @@ const OrderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
   },
   {
     timeStamps: true,
   }
 );
-export default mongoose.models.products ||
-  mongoose.model("orders", OrderSchema);
+export default mongoose.models.orders || mongoose.model("orders", OrderSchema);
